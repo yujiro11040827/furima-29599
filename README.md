@@ -2,13 +2,16 @@
 
 # usersテーブル
 
-| Column     | Type     | Options     |
-| ---------- | -------- | ----------- |
-| first_name | string   | null: false |
-| last_name  | string   | null: false |
-| email      | string   | null: false |
-| password   | string   | null: false |
-| birth_day  | datetime | null: false |
+| Column         | Type     | Options     |
+| -------------- | -------- | ----------- |
+| first_name     | string   | null: false |
+| last_name      | string   | null: false |
+| first_furigana | string   | null: false |
+| last_furigana  | string   | null: false |
+| nickname       | string   | null: false |
+| email          | string   | null: false |
+| password       | string   | null: false |
+| birth_day      | datetime | null: false |
 
 ### Association
 
@@ -22,10 +25,10 @@
 | Column          | Type     | Options     |
 | --------------- | -------  | ----------- |
 | name            | string   | null: false |
-| category        | string   | null: false |
+| category        | integer  | null: false |
 | price           | integer  | null: false |
-| seller          | string   | null: false |
-| status          | string   | null: false |
+| user_id         | integer  | null: false |
+| status          | integer  | null: false |
 | shipment_source | integer  | null: false |
 | date_shipment   | integer  | null: false |
 | image           | string   | null: false |
@@ -35,7 +38,7 @@
 
 - has_many :comments
 - belongs_to :user
-- belongs-to :buy
+- has_one :buy
 
 
 # commentsテーブル
@@ -44,7 +47,6 @@
 | ----------- | ------- | ----------- |
 | user_id     | integer | null: false |
 | products_id | integer | null: false |
-| text        | string  | null: false |
 
 ### Association
 
@@ -57,15 +59,12 @@
 | ---------------- | -------  | ----------- |
 | user_id          | integer  | null: false |
 | products_id      | integer  | null: false |
-| cord_information | integer  | null: false |
-| expiration_date  | integer  | null: false |
-| security_code    | integer  | null: false |
 
 ### Association
 
 - belongs_to :user
 - belongs_to :product
-- belongs-to :address
+- has_one :address
 
 # destinationsテーブル
 
@@ -73,7 +72,7 @@
 | ------------ | ------- | ----------- |
 | user_id      | integer | null: false |
 | postal_code  | integer | null: false |
-| prefecture   | string  | null: false |
+| prefecture   | integer | null: false |
 | city         | string  | null: false |
 | address      | integer | null: false |
 | building     | string  | null: false |
