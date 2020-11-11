@@ -11,7 +11,7 @@
 | nickname       | string   | null: false |
 | email          | string   | null: false |
 | password       | string   | null: false |
-| birth_day      | datetime | null: false |
+| birth_day      | date     | null: false |
 
 ### Association
 
@@ -22,17 +22,17 @@
 
 # productsテーブル
 
-| Column          | Type     | Options     |
-| --------------- | -------  | ----------- |
-| name            | string   | null: false |
-| category        | integer  | null: false |
-| price           | integer  | null: false |
-| user_id         | integer  | null: false |
-| status          | integer  | null: false |
-| shipment_source | integer  | null: false |
-| date_shipment   | integer  | null: false |
-| image           | string   | null: false |
-| explanation     | string   | null: false |
+| Column          | Type     | Options           |
+| --------------- | -------  | ----------------- |
+| name            | string   | null: false       |
+| category        | integer  | null: false       |
+| price           | integer  | null: false       |
+| user_id         | integer  | foreign_key: true |
+| status          | integer  | null: false       |
+| shipment_source | integer  | null: false       |
+| date_shipment   | integer  | null: false       |
+| image           | string   | null: false       |
+| explanation     | text     | null: false       |
 
 ### Association
 
@@ -43,10 +43,11 @@
 
 # commentsテーブル
 
-| Column      | Type    | Options     |
-| ----------- | ------- | ----------- |
-| user_id     | integer | null: false |
-| products_id | integer | null: false |
+| Column      | Type    | Options           |
+| ----------- | ------- | ----------------- |
+| user_id     | integer | foreign_key: true |
+| products_id | integer | null: false       |
+| messsage    | string  | null: false       |
 
 ### Association
 
@@ -55,10 +56,10 @@
 
 # buysテーブル
 
-| Column           | Type     | Options     |
-| ---------------- | -------  | ----------- |
-| user_id          | integer  | null: false |
-| products_id      | integer  | null: false |
+| Column           | Type     | Options           |
+| ---------------- | -------  | ----------------- |
+| user_id          | integer  | foreign_key: true |
+| products_id      | integer  | null: false       |
 
 ### Association
 
@@ -68,15 +69,15 @@
 
 # destinationsテーブル
 
-| Column       | Type    | Options     |
-| ------------ | ------- | ----------- |
-| user_id      | integer | null: false |
-| postal_code  | integer | null: false |
-| prefecture   | integer | null: false |
-| city         | string  | null: false |
-| address      | integer | null: false |
-| building     | string  | null: false |
-| phone_number | integer | null: false |
+| Column        | Type    | Options           |
+| ------------- | ------- | ----------------- |
+| user_id       | integer | foreign_key: true |
+| postal_code   | string  | null: false       |
+| prefecture_id | integer | null: false       |
+| city          | string  | null: false       |
+| address       | string  | null: false       |
+| building      | string  | null: false       |
+| phone_number  | string  | null: false       |
 
 ### Association
 
