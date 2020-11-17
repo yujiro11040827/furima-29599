@@ -1,6 +1,7 @@
 class Product < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :user, :genre, :status, :shipment_charge, :shipment_source, :date_shipment
+  has_one_attached :image
 
   validates :name, :price, :explanation, presence: true
 
