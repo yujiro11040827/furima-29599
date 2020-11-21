@@ -34,10 +34,25 @@ RSpec.describe Product, type: :model do
         @product.valid?
         expect(@product.errors.full_messages).to include("Price is not a number")
       end
+      it "genreが空だと登録できない" do
+        @product.genre_id = ''
+        @product.valid?
+        expect(@product.errors.full_messages).to include("Genre is not a number")
+      end
+      it "genreが--だと登録できない" do
+        @product.genre_id = 1
+        @product.valid?
+        expect(@product.errors.full_messages).to include("Genre must be other than 1")
+      end
       it "statusが空だと登録できない" do
         @product.status_id = ''
         @product.valid?
         expect(@product.errors.full_messages).to include("Status is not a number")
+      end
+      it "statusが--だと登録できない" do
+        @product.status_id = '1'
+        @product.valid?
+        expect(@product.errors.full_messages).to include("Status must be other than 1")
       end
       it "shipment_sourceが空だと登録できない" do
         @product.shipment_source_id = ''
@@ -55,12 +70,12 @@ RSpec.describe Product, type: :model do
         expect(@product.errors.full_messages).to include("Shipment charge can't be blank")
       end
       it "priceが300未満だと登録できない" do
-        @product.price = '100'
+        @product.price = 100
         @product.valid?
         expect(@product.errors.full_messages).to include("Price must be greater than 299")
       end
       it "priceが10000000より高いと登録できない" do
-        @product.price = '10000000'
+        @product.price = 10000000
         @product.valid?
         expect(@product.errors.full_messages).to include("Price must be less than 10000000")
       end
