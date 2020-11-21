@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :move_to_index, except: :index
+  before_action :move_to_signed_in, except: :index
   def index
     #@products = Product.all
   end
@@ -22,9 +22,9 @@ class ProductsController < ApplicationController
     params.require(:product).permit(:name, :image, :genre_id, :price, :status_id, :shipment_charge_id, :shipment_source_id, :date_shipment_id, :explanation).merge(user_id: current_user.id)
   end
 
-  def move_to_index
+  def move_to_signed_in
     unless user_signed_in?
-      redirect_to action: :index
+      redirect_to  user_session_path
     end
   end
 end
