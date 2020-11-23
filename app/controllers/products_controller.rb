@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   before_action :move_to_signed_in, except: :index
   def index
-    #@products = Product.all
+    @products = Product.order("created_at DESC")
   end
 
   def new
@@ -28,3 +28,4 @@ class ProductsController < ApplicationController
     end
   end
 end
+

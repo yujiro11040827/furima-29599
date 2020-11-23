@@ -1,6 +1,10 @@
 class Product < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to :genre, :status, :shipment_charge, :shipment_source, :date_shipment
+  belongs_to :genre 
+  belongs_to :shipment_charge
+  belongs_to :status
+  belongs_to :shipment_source
+  belongs_to :date_shipment
   has_one_attached :image
 
   validates  :shipment_source_id, :date_shipment_id, :shipment_charge_id, presence: true
