@@ -127,6 +127,7 @@
     <ul class='item-lists'>
 
       <%# 商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
+    <% if @products.present? %>
      <% @products.each do |product| %>
       <li class='list'>
        <%= link_to "/" do %>
@@ -162,7 +163,6 @@
 
       <%# 商品がない場合のダミー %>
       <%# 商品がある場合は表示されないようにしましょう %>
-      <% if @products.present? %>
       <% else %>
       <li class='list'>
         <%= link_to '#' do %>
