@@ -1,13 +1,9 @@
 class Product < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to :genre
-  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :genre 
   belongs_to :shipment_charge
-  extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :status
-  extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :shipment_source
-  extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :date_shipment
   has_one_attached :image
 
