@@ -22,9 +22,19 @@ class ProductsController < ApplicationController
   end
 
   def edit
+    if @product.user_id = current_user.id 
+      render :edit
+    else
+      redirect_to products_path
+    end
   end
 
   def update
+    if @product.user_id = current_user.id 
+      render :edit
+    else
+      redirect_to products_path
+    end
     if @product.update(product_params)
       redirect_to product_path
     else
