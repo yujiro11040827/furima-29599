@@ -1,5 +1,7 @@
 class ProductsController < ApplicationController
   before_action :move_to_signed_in, except: :index
+  before_action :set_product,  only: [:edit, :show, :update]
+  before_action :current_product, only: [:edit, :update]
   def index
     @products = Product.order("created_at DESC")
   end
@@ -18,7 +20,17 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.find(params[:id])
+  end
+
+  def edit
+  end
+
+  def update
+    if @product.update(product_params)
+      redirect_to product_path
+    else
+      render :edit
+    end
   end
 
   private
@@ -29,6 +41,16 @@ class ProductsController < ApplicationController
   def move_to_signed_in
     unless user_signed_in?
       redirect_to  user_session_path
+    end
+  end
+
+  def set_product
+    @product = Product.find(params[:id])
+  end
+
+  def current_product
+    if @product.user_id != current_user.id 
+      redirect_to product_path
     end
   end
 end
