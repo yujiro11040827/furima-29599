@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :move_to_signed_in, except: :index
+  before_action :move_to_signed_in, except: [:index, :show]
   before_action :set_product,  only: [:edit, :show, :update, :destroy]
   before_action :current_product, only: [:edit, :update, :destroy]
   def index
