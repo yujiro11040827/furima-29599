@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
-  before_action :move_to_signed_in, except: :index
-  before_action :set_product,  only: [:edit, :show, :update]
-  before_action :current_product, only: [:edit, :update]
+  before_action :move_to_signed_in, except: [:index, :show]
+  before_action :set_product,  only: [:edit, :show, :update, :destroy]
+  before_action :current_product, only: [:edit, :update, :destroy]
   def index
     @products = Product.order("created_at DESC")
   end
@@ -31,6 +31,11 @@ class ProductsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @product.destroy
+    redirect_to products_path
   end
 
   private
