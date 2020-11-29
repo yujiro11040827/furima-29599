@@ -7,6 +7,7 @@ class Product < ApplicationRecord
   belongs_to :date_shipment
   has_one_attached :image
   belongs_to :user
+  has_one :buy
 
   validates  :shipment_source_id, :date_shipment_id, :shipment_charge_id, presence: true
 
