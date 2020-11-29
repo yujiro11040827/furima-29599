@@ -4,6 +4,7 @@ class BuysController < ApplicationController
     unless user_signed_in?
       redirect_to  user_session_path
     end
+    @product = Product.find(params[:product_id])
   end
 
   def create
