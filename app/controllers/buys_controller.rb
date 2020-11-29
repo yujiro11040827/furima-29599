@@ -1,5 +1,9 @@
 class BuysController < ApplicationController
+
   def index
+    unless user_signed_in?
+      redirect_to  user_session_path
+    end
   end
 
   def create
@@ -17,4 +21,5 @@ class BuysController < ApplicationController
   def buy_params
     params.require(:user_id).permit(:products_id)
   end
+
 end
