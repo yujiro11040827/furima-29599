@@ -20,7 +20,7 @@ class BuysController < ApplicationController
   private
 
   def buy_params
-    params.require(:user_id).permit(:products_id)
+    params.require(:buy).permit(:user_id, :products_id).merge(token: params[:token])
   end
 
 end
