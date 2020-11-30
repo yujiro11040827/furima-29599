@@ -8,7 +8,7 @@ class BuysController < ApplicationController
   end
 
   def create
-    @buy = Buy.new(buy_params)
+    @buy_destination = BuyDestination.new(buy_params)
     if @buy.valid?
       @buy.save
       return redirect_to root_path
