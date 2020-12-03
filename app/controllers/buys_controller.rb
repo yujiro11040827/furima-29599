@@ -11,17 +11,17 @@ class BuysController < ApplicationController
   def create
     @buy_destination = BuyDestination.new(buy_params)
     if @buy_destination.valid?
-      @buy_destination.save
-      return redirect_to root_path
+       @buy_destination.save
+      return redirect_to action: :index
     else
-      render 'index'
+      render action: :index
     end
   end
 
   private
 
   def buy_params
-    params.require(:buy).permit(:user_id, :products_id).merge(token: params[:token])
+    params.require(:buy_destination).permit(:user_id, :products_id, :buys_id, :postal_code, :shipment_source_id, :city, :address, :building, :phone_number).merge(token: params[:token])
   end
 
 end

@@ -1,7 +1,7 @@
 class BuyDestination
 
   include ActiveModel::Model
-  attr_accessor :user_id, :products_id, :buys_id, :postal_code, :shipment_source_id, :city, :address, :bulding, :phone_number
+  attr_accessor :user_id, :products_id, :buys_id, :postal_code, :shipment_source_id, :city, :address, :building, :phone_number
 
   with_options presence: true do
     validates :user_id, :products_id, :buys_id, :city, :address
