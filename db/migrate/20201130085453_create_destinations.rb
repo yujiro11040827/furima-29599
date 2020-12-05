@@ -1,7 +1,7 @@
 class CreateDestinations < ActiveRecord::Migration[6.0]
   def change
     create_table :destinations do |t|
-      t.integer :buys_id,               foreign_key: true
+      t.integer :buy_id,               foreign_key: true
       t.string :postal_code,            null: false
       t.integer :shipment_source_id,    null: false
       t.string :city,                   null: false
