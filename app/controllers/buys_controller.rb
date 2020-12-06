@@ -6,6 +6,9 @@ class BuysController < ApplicationController
     end
     @product = Product.find(params[:product_id])
     @buy_destination = BuyDestination.new
+    if @product.buy.present?
+      redirect_to products_path
+    end
   end
 
   def create
