@@ -1,18 +1,15 @@
 class BuysController < ApplicationController
+  before_action :authenticate_user!
+  before_action :set_product_id,  only: [:index, :create]
 
   def index
-    unless user_signed_in?
-      redirect_to  user_session_path
-    end
-    @product = Product.find(params[:product_id])
     @buy_destination = BuyDestination.new
-    if @product.buy.present?
+    if @product.buy.present? || current_user.id == @product.user_id
       redirect_to products_path
     end
   end
 
   def create
-    @product = Product.find(params[:product_id])
     @buy_destination = BuyDestination.new(buy_params)
     if @buy_destination.valid?
        pay_product
@@ -27,6 +24,10 @@ class BuysController < ApplicationController
 
   def buy_params
     params.require(:buy_destination).permit(:postal_code, :shipment_source_id, :city, :address, :building, :phone_number).merge(token: params[:token], user_id: current_user.id, product_id: params[:product_id])
+  end
+
+  def set_product_id
+    @product = Product.find(params[:product_id])
   end
 
   def pay_product
