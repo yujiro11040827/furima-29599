@@ -10,6 +10,10 @@ RSpec.describe BuyDestination, type: :model do
      it "postal_code,shipment_source_id,city,address,phone_number,tokenが存在すれば登録できる" do
        expect(@buy_destination).to be_valid
      end
+     it "buildingが空でも登録できる" do
+       expect(@buy_destination).to be_valid
+       @buy_destination.building = ''
+     end
     end
 
     context '商品購入がうまくいかないとき' do
