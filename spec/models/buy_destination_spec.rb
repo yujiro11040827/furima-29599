@@ -11,8 +11,8 @@ RSpec.describe BuyDestination, type: :model do
        expect(@buy_destination).to be_valid
      end
      it "buildingが空でも登録できる" do
-       expect(@buy_destination).to be_valid
        @buy_destination.building = ''
+       expect(@buy_destination).to be_valid
      end
     end
 
