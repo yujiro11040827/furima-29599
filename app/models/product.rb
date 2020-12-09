@@ -9,7 +9,7 @@ class Product < ApplicationRecord
   belongs_to :user
   has_one :buy
 
-  validates  :shipment_source_id, :date_shipment_id, :shipment_charge_id, presence: true
+  validates  :shipment_source_id, :date_shipment_id, :shipment_charge_id, :image, presence: true
 
   validates :price, presence: true, numericality: {greater_than: 299, less_than: 10000000}, format: { with: /\A[a-z0-9]+\z/} 
 
